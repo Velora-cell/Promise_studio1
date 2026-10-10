@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d20">
+  <title> | راه های ارتباطی </title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #080d20;
+      --blue: #65baff;
+      --purple: #9b8cff;
+      --text: #f5f7ff;
+      --muted: #a3acc9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 32px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 15%, #233d80 0%, transparent 38%),
+        radial-gradient(ellipse at 90% 80%, #39245f 0%, transparent 35%),
+        var(--bg);
+      font-family: "Vazirmatn", Tahoma, sans-serif;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border: 1px solid #ffffff12;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: -130px;
+      right: -100px;
+    }
+
+    body::after {
+      bottom: -150px;
+      left: -100px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 1;
+      animation: appear .8s ease both;
+    }
+
+    .card {
+      position: relative;
+      padding: 34px 25px 24px;
+      overflow: hidden;
+      border: 1px solid #ffffff20;
+      border-radius: 30px;
+      background: linear-gradient(
+        145deg,
+        #ffffff0e,
+        #ffffff04 60%,
+        #a7caff08
+      );
+      box-shadow:
+        0 30px 100px #00000050,
+        inset 0 1px 0 #ffffff12;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #8acbff,
+        #b5a4ff,
+        transparent
+      );
+    }
+
+    .top-label {
+      width: fit-content;
+      margin: 0 auto 24px;
+      padding: 7px 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ffffff16;
+      border-radius: 30px;
+      color: #c9dcff;
+      background: #ffffff08;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #79f0c2;
+      box-shadow: 0 0 12px #79f0c2;
+    }
+
+    .avatar {
+  width: 115px;
+  height: 115px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid #8acbff55;
+  background: none;
+  box-shadow: 0 0 35px #65baff25;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0;
+  transform: scale(1.15);
+}
+
+    h1 {
+      text-align: center;
+      font-size: clamp(25px, 7vw, 32px);
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(90deg, #8ed5ff, #b8a7ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .subtitle {
+      margin: 9px 0 23px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .divider {
+      height: 1px;
+      margin-bottom: 23px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #ffffff20,
+        transparent
+      );
+    }
+
+    .section-title {
+      margin-bottom: 14px;
+      color: #dfe7ff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+
+    .social {
+      --accent: #83caff;
+      min-width: 0;
+      min-height: 67px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid #ffffff13;
+      border-radius: 17px;
+      background: #ffffff06;
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .social:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent), transparent 40%);
+      background: color-mix(in srgb, var(--accent), transparent 92%);
+      box-shadow: 0 9px 24px #00000020;
+    }
+
+    .social:active {
+      transform: scale(.97);
+    }
+
+    .social-icon {
+      flex: 0 0 39px;
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent), transparent 88%);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .social-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .social-info strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .social-info small {
+      display: block;
+      margin-top: 4px;
+      overflow: hidden;
+      color: #9da8c6;
+      font-size: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .arrow {
+      color: #8995b4;
+      font-size: 17px;
+      transition: transform .2s ease;
+    }
+
+    .social:hover .arrow {
+      transform: translateX(-3px);
+      color: var(--accent);
+    }
+
+    .telegram { --accent: #64c7ff; }
+    .instagram { --accent: #ff9fc6; }
+    .whatsapp { --accent: #65e6a4; }
+    .eitaa { --accent: #ffbb78; }
+    .rubika { --accent: #b2a0ff; }
+    .bale { --accent: #84e4df; }
+
+    .share-button {
+      width: 100%;
+      margin-top: 19px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid #9acfff55;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(100deg, #397fdb, #7565d8);
+      box-shadow: 0 8px 24px #416bd52b;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .share-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+    }
+
+    .share-icon {
+      font-size: 18px;
+    }
+
+    .footer {
+      padding-top: 23px;
+      text-align: center;
+      color: #7f8aaa;
+      font-size: 11px;
+      line-height: 2;
+    }
+
+    .heart {
+      color: #ff8eae;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 10;
+      right: 50%;
+      bottom: 24px;
+      width: max-content;
+      max-width: calc(100% - 32px);
+      padding: 13px 18px;
+      border: 1px solid #ffffff20;
+      border-radius: 14px;
+      color: #fff;
+      background: #182342;
+      box-shadow: 0 10px 35px #00000055;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(50%, 12px);
+      transition: .25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(50%, 0);
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        padding: 27px 15px 20px;
+      }
+
+      .socials {
+        gap: 8px;
+      }
+
+      .social {
+        padding: 10px 8px;
+        gap: 8px;
+      }
+
+      .social-icon {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    .app-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="card">
+
+      <div class="top-label">
+        <span class="status-dot"></span>
+        خوش آمدید
+      </div>
+
+      <div class="avatar">
+  <img src="logo5.png.png" alt="لوگوی مغازه">
+</div>
+
+      <!-- اسم و توضیحات دلخواهت را اینجا تغییر بده -->
+      <h1>promise <span class="gradient-text">studio</span></h1>
+      <p class="subtitle">
+        طراحی فضای خونه فراتر از یک دکوراسیون؛<br>
+        ما را در شبکه‌های اجتماعی پیدا کنید 
+      </p>
+
+      <div class="divider"></div>
+
+      <h2 class="section-title">✧ راه‌های ارتباط با ما</h2>
+
+      <div class="socials">
+
+        <a class="social telegram" data-link="telegram" href="#">
+          <img class="app-logo" src="telegram2.png.png" alt="Telegram">
+          <span class="social-info">
+            <strong>تلگرام</strong>
+            <small>مشاوره و ارتباط</small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+        <a class="social instagram" data-link="instagram" href="#">
+        <img class="app-logo" src="instagram2.png.png" alt="Instagram">
+          <span class="social-info">
+            <strong>اینستاگرام</strong>
+            <small>نمونه کارها </small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+        <a class="social whatsapp" data-link="whatsapp" href="#">
+         <img class="app-logo" src="whatsapp2.png.png" alt="WhatsApp">
+          <span class="social-info">
+            <strong>واتساپ</strong>
+            <small>ارتباط مستقیم</small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+        <a class="social eitaa" data-link="eitaa" href="#">
+          <img class="app-logo" src="eitta2.png.png" alt="Eitaa">
+          <span class="social-info">
+            <strong>ایتا</strong>
+            <small> ارتباط با ما</small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+        <a class="social rubika" data-link="rubika" href="#">
+          <img class="app-logo" src="rubika2.png.png" alt="Rubika">
+          <span class="social-info">
+            <strong>روبیکا</strong>
+            <small>همراه ما باشید</small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+        <a class="social bale" data-link="bale" href="#">
+         <img class="app-logo" src="bale2.png.png" alt="Bale">
+          <span class="social-info">
+            <strong>بله</strong>
+            <small>ارتباط آسان و سریع</small>
+          </span>
+          <span class="arrow">‹</span>
+        </a>
+
+      </div>
+
+      <button class="share-button" id="shareButton" type="button">
+        <span class="share-icon">↗</span>
+        <span>اشتراک‌گذاری صفحه</span>
+      </button>
+
+    </section>
+
+    <footer class="footer">
+       made by promise studio  <span class="heart">♥</span>   
+      <br>
+      <span>© promise studio</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // لینک واقعی هر حساب را بین علامت‌های نقل‌قول قرار بده.
+    const LINKS = {
+      telegram: "https://t.me/promise_studio1",
+      instagram:"https://www.instagram.com/promise.studio1",
+      whatsapp: "https://wa.me/9899233036624",
+      eitaa: "https://eitaa.ir/promise_studio1",
+      rubika: "https://rubika.ir/promise_studio1",
+      bale: "https://ble.ir/promise_studio1"
+    };
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+    document.querySelectorAll("[data-link]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const name = button.dataset.link;
+        const url = LINKS[name];
+        if (
+          !url ||
+          url.includes("your_username") ||
+          url.includes("XXXX") ||
+          url === "#"
+        ) {
+          event.preventDefault();
+          showToast("اول لینک واقعی این شبکه را در کد وارد کن 💙");
+          return;
+        }
+
+        button.href = url;
+        button.target = "_blank";
+        button.rel = "noopener noreferrer";
+      });
+    });
+
+    document.getElementById("shareButton").addEventListener(
+      "click",
+      async () => {
+        if (location.protocol === "file:") {
+          showToast("برای اشتراک‌گذاری، اول سایت را آنلاین منتشر کن ✨");
+          return;
+        }
+
+        try {
+          if (navigator.share) {
+            await navigator.share({
+              title: document.title,
+              text: "از این صفحه می‌تونی همه‌ی لینک‌های منو پیدا کنی 💙",
+              url: location.href
+            });
+          } else {
+            await navigator.clipboard.writeText(location.href);
+            showToast("لینک صفحه کپی شد! 💙");
+          }
+        } catch (error) {
+          if (error.name !== "AbortError") {
+            showToast("برای کپی لینک، آدرس صفحه را از مرورگر بردار.");
+          }
+        }
+      }
+    );
+  </script>
+</body>
+</html>
